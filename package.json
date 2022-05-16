@@ -1,0 +1,19 @@
+{
+  "name": "course",
+  "version": "1.0.0",
+  "description": "rest api full for to learn node advanced with typescript and express",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Camilo Vargas",
+  "license": "MIT",
+  "devDependencies": {
+    "tslint": "^6.1.3",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "express": "4.18.1"
+  }
+}
