@@ -1,19 +1,24 @@
 import express from "express"
 import dotenv from "dotenv"
-import {resolve} from 'path'
+import cors from "cors"
+import { dbConnect } from "./config/mongo"
+import router from "./app/routes"
+import { API_VERSION, NODE_ENV, PORT } from "./config/const"
 
-dotenv.config({path: resolve(__dirname, "../.env")})
+dotenv.config({ path: "../.env" })
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 
-const PORT = process.env.PORT || 3000
+app.use(`/api/${API_VERSION}`, router)
 
-app.get('/ping', (_, res) => {
-  console.log("ping....")
-  res.send("pong")
-})
-
+dbConnect()
 app.listen(PORT, () => {
-  console.log(`Server listennes of port ${PORT}`)
+  if(NODE_ENV === "development"){
+    console.log("##############################")
+    console.log("## API REST")
+    console.log(`## API Version:${API_VERSION}`)
+    console.log(`## Ready on port:${PORT}`)
+  }
 })
